@@ -6,8 +6,12 @@ from src.api.main import app
 # Get the OpenAPI schema
 openapi_schema = app.openapi()
 
-# Write to file
-output_dir = "interfaces"
+# Get the directory of the current script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+# Go up two levels to the backend directory
+backend_dir = os.path.dirname(os.path.dirname(script_dir))
+output_dir = os.path.join(backend_dir, "interfaces")
+
 os.makedirs(output_dir, exist_ok=True)
 output_path = os.path.join(output_dir, "openapi.json")
 
